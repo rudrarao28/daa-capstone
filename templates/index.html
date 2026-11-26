@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart City • Route Optimizer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-icon">↗</div><div><b>SMART CITY</b><span>Mobility intelligence</span></div></div>
+    <div class="side-label">WORKSPACE</div>
+    <a class="nav active" href="/">▦ <span>Route planner</span></a>
+    <a class="nav" href="#benchmark">◷ <span>Algorithm benchmark</span></a>
+    <div class="side-bottom"><div class="status-dot"></div><span>Network data loaded</span></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><div class="eyebrow">CITY MOBILITY / CONTROL CENTER</div><h1>Route optimization</h1><p>Find efficient journeys across the city road network.</p></div>
+      <div class="live-pill"><span></span> SYSTEM ONLINE</div>
+    </header>
+
+    <section class="stats">
+      <article class="stat-card"><div class="stat-icon">⌖</div><div class="stat-label">LOCATIONS</div><strong id="locationCount">—</strong><small>Connected city points</small></article>
+      <article class="stat-card"><div class="stat-icon">⤢</div><div class="stat-label">ROAD CONNECTIONS</div><strong id="roadCount">—</strong><small>Weighted road segments</small></article>
+      <article class="stat-card"><div class="stat-icon">◎</div><div class="stat-label">ALGORITHMS</div><strong>02</strong><small>Dijkstra + Bellman-Ford</small></article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel planner">
+        <div class="panel-heading"><div><div class="eyebrow">JOURNEY BUILDER</div><h2>Plan your route</h2></div><span class="tag">LIVE CALCULATION</span></div>
+        <div class="form-grid">
+          <label>STARTING LOCATION<select id="start"></select></label>
+          <label>DESTINATION<select id="end"></select></label>
+          <label class="wide">ROUTE ALGORITHM<select id="algorithm"><option value="dijkstra">Dijkstra's algorithm</option><option value="bellman-ford">Bellman-Ford algorithm</option></select></label>
+        </div>
+        <button id="findRoute" class="primary-btn">Calculate shortest route <span>→</span></button>
+        <div id="routeResult" class="result empty" aria-live="polite"><div class="result-symbol">⌁</div><div><b>Ready to calculate</b><p>Select two locations to find the shortest route.</p></div></div>
+      </article>
+
+      <article class="panel map-panel">
+        <div class="panel-heading"><div><div class="eyebrow">NETWORK OVERVIEW</div><h2>City road map</h2></div><span class="map-legend"><i></i> Road network</span></div>
+        <div class="map-wrap">
+          <svg id="network" viewBox="0 0 620 360" role="img" aria-label="Schematic diagram of city locations and road connections">
+            <g id="edges"></g><g id="routeEdges"></g><g id="nodes"></g>
+          </svg>
+        </div>
+        <div class="map-note">Schematic network visualization · Not a geographic map</div>
+      </article>
+    </section>
+
+    <section class="panel benchmark" id="benchmark">
+      <div class="panel-heading"><div><div class="eyebrow">PERFORMANCE LAB</div><h2>Algorithm comparison</h2><p>Execution time across increasing graph sizes. Lower is faster.</p></div><button id="runBenchmark" class="secondary-btn">Run benchmark ↗</button></div>
+      <div id="benchmarkState" class="benchmark-state">Run the benchmark to measure both algorithms on generated city networks.</div>
+      <div id="benchmarkTable" class="table-wrap"></div>
+    </section>
+    <footer>SMART CITY ROUTE OPTIMIZATION <span>CAPSTONE PROJECT</span></footer>
+  </main>
+</div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

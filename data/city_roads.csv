@@ -1,0 +1,15 @@
+source,destination,distance_km
+City Center,Railway Station,4.2
+City Center,University,6.5
+City Center,Hospital,3.1
+City Center,Shopping Mall,5.0
+Railway Station,Bus Stand,2.4
+Railway Station,University,5.2
+Bus Stand,Hospital,4.7
+Bus Stand,Airport Road,8.5
+University,Technology Park,3.8
+University,Shopping Mall,2.6
+Hospital,Shopping Mall,3.3
+Shopping Mall,Technology Park,4.1
+Technology Park,Airport Road,7.2
+Hospital,Airport Road,10.0
